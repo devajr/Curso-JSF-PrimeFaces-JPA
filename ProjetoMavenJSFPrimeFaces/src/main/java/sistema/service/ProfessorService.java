@@ -1,19 +1,18 @@
 package sistema.service;
 
-import java.util.ArrayList;
-import java.util.List;
 
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import sistema.modelos.Aluno;
 import sistema.modelos.Professor;
 
+
 public class ProfessorService {
-	private ArrayList <Professor> professores = new ArrayList<Professor>();
-private static EntityManagerFactory emf;
+
+	private static EntityManagerFactory emf;
 	
 	public ProfessorService()
 	{
@@ -46,6 +45,7 @@ private static EntityManagerFactory emf;
 		return professores;
 		
 	}
+
 	public void alterar(Professor professor) {
 
 		EntityManager em = emf.createEntityManager();
@@ -63,7 +63,7 @@ private static EntityManagerFactory emf;
 
 		EntityManager em = emf.createEntityManager();
 		em.getTransaction().begin();	
-		professor = em.find(Professor.class,professor.getId());
+			professor = em.find(Professor.class,professor.getMatricula());
 			em.remove(professor);
 		em.getTransaction().commit();	
 	    em.close();
@@ -71,5 +71,6 @@ private static EntityManagerFactory emf;
 		
 		
 	}
-
+	
+	
 }

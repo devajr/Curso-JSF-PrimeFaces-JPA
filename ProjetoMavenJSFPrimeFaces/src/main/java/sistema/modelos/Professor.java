@@ -2,28 +2,28 @@ package sistema.modelos;
 
 import java.io.Serializable;
 
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Professor implements Serializable{
+
+
 	@Id
-	private int id;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private int matricula;
+	
 	private String nome;
-	private String telefone;
-	private double salario;
-	private String email;
-	public double getSalario() {
-		return salario;
+	private String curso;
+	
+	public int getMatricula() {
+		return matricula;
 	}
-	public void setSalario(double salario) {
-		this.salario = salario;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setMatricula(int matricula) {
+		this.matricula = matricula;
 	}
 	public String getNome() {
 		return nome;
@@ -31,25 +31,22 @@ public class Professor implements Serializable{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getTelefone() {
-		return telefone;
+	public String getCurso() {
+		return curso;
 	}
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
+	public void setCurso(String curso) {
+		this.curso = curso;
 	}
 	
 	
+	
+	
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + id;
+		result = prime * result + matricula;
 		return result;
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -60,13 +57,14 @@ public class Professor implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Professor other = (Professor) obj;
-		
+		if (matricula != other.matricula)
+			return false;
 		return true;
 	}
 	
 	@Override
 	public String toString() {
-		return "Aluno  id="+id+", nome=" + nome + ", telefone=" + telefone + ", salario="+salario + ",email="+ email + "]";
-	}
+		return "Professor [matricula=" + matricula + ", nome=" + nome + ", curso=" + curso + "]";
+	}	
 
 }
