@@ -7,6 +7,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+
+
 import sistema.modelos.Professor;
 
 
@@ -14,8 +16,7 @@ public class ProfessorService {
 
 	private static EntityManagerFactory emf;
 	
-	public ProfessorService()
-	{
+	public ProfessorService(){
 	      emf = Persistence.createEntityManagerFactory("ProjetoMavenJSFPrimeFaces");
 	}
 	
@@ -70,6 +71,16 @@ public class ProfessorService {
 
 		
 		
+	}
+	
+
+	@SuppressWarnings("unchecked")
+	public List<Professor> getAllProfessores(){
+		
+		EntityManager em = emf.createEntityManager();
+		List <Professor> list = em.createQuery("Select c From Professor c").getResultList();
+		em.close();
+		return list;
 	}
 	
 	
